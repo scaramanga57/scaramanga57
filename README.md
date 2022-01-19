@@ -1,14 +1,16 @@
-
 1. Ubuntu update
+
 sudo apt update
 sudo apt full-upgrade
 
-
 2. Zeitzone einstellen
+
+
 sudo dpkg-reconfigure tzdata
 
 
 3. Neuer Benutzer
+
 
 adduser <yournewuser>
 
@@ -16,16 +18,15 @@ rechte geben:
 
 usermod -aG sudo <yournewuser>
 
-prÃ¼fen (Soll Ergebnis: root):
+prüfen (Soll Ergebnis: root):
 
 su - yournewuser
 sudo su
 whoami
 
-
 4. RSA Paar erstellen
 
-puttygen.exe Ã¶ffnen
+puttygen.exe öffnen
 
 Einstellung:
 Type of key to generate= RSA
@@ -36,17 +37,19 @@ Kommentar und Passwort setzten. Generate dann abspeichern.
 
 5. RSA in ubuntu einstellen
 
-Nicht als sudo su ausfÃ¼hren!
+Nicht als sudo su ausführen!
 
 im home verzeichnis ordner erstellen:
-mkdir .sshÂ  
+mkdir .ssh  
 
 Datei erstellen 
 
 sudo nano authorized_keys
 
-und schlÃ¼ssel rein kopieren
-ssh-rsa â€¦..
+und schlüssel rein kopieren
+ssh-rsa …..
+
+
 
 
 Hier RSA einstellen:
@@ -61,7 +64,7 @@ grep -q "^PasswordAuthentication" /etc/ssh/sshd_config && sed -i 's/^PasswordAut
 systemctl restart sshd
 
 
-7. Root deaktivieren
+6. Root deaktivieren
 
 sed -i 's/^PermitRootLogin.*/PermitRootLogin no/g' /etc/ssh/sshd_config
 
@@ -92,7 +95,7 @@ sudo ufw enable
 sudo ufw status
 
 
-8. SSH Port Ã¤ndern
+8. SSH Port ändern
 
 In Firewall freigeben:
 sudo ufw allow 5522/tcp
@@ -100,7 +103,7 @@ sudo ufw allow 5522/tcp
 und testen:
 sudo ufw status
 
-SSH Port in Datei auf 5522 Ã¤ndern:
+SSH Port in Datei auf 5522 ändern:
 sudo nano /etc/ssh/sshd_config
 
 Neustart:
@@ -116,4 +119,5 @@ Fenster offen lassen und mit neuem Fenster testen
 Wenn geht:
 
 sudo ufw deny 22/tcp
+
 
